@@ -43,7 +43,8 @@ jobs:
       - name: 检查是否有变更
         id: check_changes
         run: |
-          if [ -n "$(git status --porcelain)" ]; then
+          # 只检查 rules/ 目录的变更
+          if [ -n "$(git status --porcelain rules/)" ]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
             echo "发现规则文件有更新"
           else
@@ -56,6 +57,11 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # 恢复不需要提交的文件变更
+          git restore convert_rules.py 2>/dev/null || true
+
+          # 只添加 rules/ 目录的变更
           git add rules/
           git commit -m "chore: 更新 Surge 规则 $(date +'%Y-%m-%d %H:%M')"
 
