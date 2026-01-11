@@ -63,3 +63,18 @@ jobs:
         if: steps.check_changes.outputs.has_changes == 'true'
         run: |
           git push
+
+      - name: 清除 jsDelivr CDN 缓存
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          echo "正在清除 jsDelivr CDN 缓存..."
+
+          # Purge geosite 目录（域名规则）
+          curl -s "https://purge.jsdelivr.net/gh/sddpljx/split-rules@main/rules/geo/geosite/*"
+          echo "✓ 已清除 geosite 缓存"
+
+          # Purge geoip 目录（IP 规则）
+          curl -s "https://purge.jsdelivr.net/gh/sddpljx/split-rules@main/rules/geo/geoip/*"
+          echo "✓ 已清除 geoip 缓存"
+
+          echo "jsDelivr CDN 缓存清除完成！"

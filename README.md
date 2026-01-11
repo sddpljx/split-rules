@@ -16,6 +16,7 @@
 - 🔗 智能合并：自动将同名 IP 规则追加到域名规则文件中
 - 📁 独立 IP 规则：无同名域名的 IP 规则单独保存在 `rules/geo/geoip/` 目录
 - 📦 提供 GitHub Raw 和 jsDelivr CDN 两种访问方式
+- ⚡ 自动清除 CDN 缓存：更新后立即 purge jsDelivr 缓存，确保用户获取最新规则
 - 🚀 GitHub Actions 自动化构建
 
 ## 转换规则
@@ -133,6 +134,7 @@ RULE-SET,https://cdn.jsdelivr.net/gh/sddpljx/split-rules@main/rules/geo/geosite/
 - 自动更新：每天北京时间 8:00（UTC 0:00）
 - 手动触发：在 Actions 页面手动运行 workflow
 - 代码更新：当转换脚本或 workflow 配置被修改时自动运行
+- CDN 缓存：每次更新后自动清除 jsDelivr CDN 缓存，用户可立即获取最新规则
 
 ## 技术栈
 
