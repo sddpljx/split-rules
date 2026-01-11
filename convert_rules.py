@@ -8,7 +8,6 @@
 - 忽略空行和注释行（以 # 开头）
 """
 
-import os
 import sys
 from pathlib import Path
 
@@ -76,7 +75,7 @@ def main():
     """主函数：批量转换所有 .list 文件"""
     # 设置路径
     source_dir = Path('meta-rules-dat/geo/geosite')
-    output_dir = Path('rules')
+    output_dir = Path('rules/geo/geosite')
 
     if not source_dir.exists():
         print(f'错误: 源目录不存在: {source_dir}', file=sys.stderr)
