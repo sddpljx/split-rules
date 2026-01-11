@@ -8,8 +8,8 @@
 - 带+号的域名（如 +.apple.de）→ DOMAIN-SUFFIX,apple.de
 
 IP 规则：
-- IPv4 CIDR（如 1.1.1.0/24）→ IP-CIDR,1.1.1.0/24
-- IPv6 CIDR（如 2001:db8::/32）→ IP-CIDR6,2001:db8::/32
+- IPv4 CIDR（如 1.1.1.0/24）→ IP-CIDR,1.1.1.0/24,no-resolve
+- IPv6 CIDR（如 2001:db8::/32）→ IP-CIDR6,2001:db8::/32,no-resolve
 
 - 忽略空行和注释行（以 # 开头）
 """
@@ -64,7 +64,7 @@ def convert_ip_line(line: str) -> str:
         line: 原始 IP 规则（CIDR 格式）
 
     Returns:
-        转换后的 Surge 规则，如果是空行或注释则返回空字符串
+        转换后的 Surge 规则（带 no-resolve），如果是空行或注释则返回空字符串
     """
     line = line.strip()
 
@@ -72,11 +72,11 @@ def convert_ip_line(line: str) -> str:
     if not line or line.startswith('#'):
         return ''
 
-    # 判断 IPv4 还是 IPv6
+    # 判断 IPv4 还是 IPv6，添加 no-resolve 避免 DNS 泄露并提升性能
     if is_ipv6(line):
-        return f'IP-CIDR6,{line}'
+        return f'IP-CIDR6,{line},no-resolve'
     else:
-        return f'IP-CIDR,{line}'
+        return f'IP-CIDR,{line},no-resolve'
 
 
 def convert_domain_file(input_path: Path, output_path: Path) -> int:

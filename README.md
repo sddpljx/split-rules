@@ -26,8 +26,10 @@
 |--------|-----------|------|
 | `apple.com` | `DOMAIN,apple.com` | 完整域名匹配 |
 | `+.apple.com` | `DOMAIN-SUFFIX,apple.com` | 域名后缀匹配 |
-| `1.1.1.0/24` | `IP-CIDR,1.1.1.0/24` | IPv4 地址段匹配 |
-| `2001:db8::/32` | `IP-CIDR6,2001:db8::/32` | IPv6 地址段匹配 |
+| `1.1.1.0/24` | `IP-CIDR,1.1.1.0/24,no-resolve` | IPv4 地址段匹配 |
+| `2001:db8::/32` | `IP-CIDR6,2001:db8::/32,no-resolve` | IPv6 地址段匹配 |
+
+> **注意**：所有 IP 规则均添加 `no-resolve` 参数，避免 DNS 泄露并提升匹配性能。
 
 ## 目录结构
 
