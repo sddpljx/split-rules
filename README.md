@@ -2,14 +2,18 @@
 
 [![Convert Meta Rules to Surge Format](https://github.com/sddpljx/split-rules/actions/workflows/convert-rules.yml/badge.svg)](https://github.com/sddpljx/split-rules/actions/workflows/convert-rules.yml)
 
-这是一个自动转换 [MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat) 域名分流规则为 Surge 格式的仓库。
+这是一个自动转换 [MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat) 域名和 IP 分流规则为 Surge 格式的仓库。
 
 ## 功能特性
 
 - 🔄 自动同步上游规则（每天北京时间 8:00）
-- 🎯 支持两种域名匹配格式：
+- 🎯 支持域名匹配格式：
   - `DOMAIN` - 完整域名匹配
   - `DOMAIN-SUFFIX` - 域名后缀匹配
+- 🌐 支持 IP 地址匹配格式：
+  - `IP-CIDR` - IPv4 地址段匹配
+  - `IP-CIDR6` - IPv6 地址段匹配
+- 🔗 智能合并：自动将同名 IP 规则追加到域名规则文件中
 - 📦 提供 GitHub Raw 和 jsDelivr CDN 两种访问方式
 - 🚀 GitHub Actions 自动化构建
 

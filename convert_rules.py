@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
 """
-将 meta-rules-dat 的域名列表转换为 Surge 规则格式
+将 meta-rules-dat 的域名和 IP 列表转换为 Surge 规则格式
 
 转换规则：
+域名规则：
 - 普通域名（如 apple.com.akadns.net）→ DOMAIN,apple.com.akadns.net
 - 带+号的域名（如 +.apple.de）→ DOMAIN-SUFFIX,apple.de
+
+IP 规则：
+- IPv4 CIDR（如 1.1.1.0/24）→ IP-CIDR,1.1.1.0/24
+- IPv6 CIDR（如 2001:db8::/32）→ IP-CIDR6,2001:db8::/32
+
 - 忽略空行和注释行（以 # 开头）
 """
 
@@ -12,7 +18,20 @@ import sys
 from pathlib import Path
 
 
-def convert_line(line: str) -> str:
+def is_ipv6(line: str) -> bool:
+    """
+    判断是否为 IPv6 地址
+
+    Args:
+        line: 待判断的行
+
+    Returns:
+        如果包含冒号则判定为 IPv6
+    """
+    return ':' in line
+
+
+def convert_domain_line(line: str) -> str:
     """
     转换单行域名规则
 
@@ -37,13 +56,39 @@ def convert_line(line: str) -> str:
     return f'DOMAIN,{line}'
 
 
-def convert_file(input_path: Path, output_path: Path) -> None:
+def convert_ip_line(line: str) -> str:
     """
-    转换整个文件
+    转换单行 IP 规则
+
+    Args:
+        line: 原始 IP 规则（CIDR 格式）
+
+    Returns:
+        转换后的 Surge 规则，如果是空行或注释则返回空字符串
+    """
+    line = line.strip()
+
+    # 跳过空行和注释
+    if not line or line.startswith('#'):
+        return ''
+
+    # 判断 IPv4 还是 IPv6
+    if is_ipv6(line):
+        return f'IP-CIDR6,{line}'
+    else:
+        return f'IP-CIDR,{line}'
+
+
+def convert_domain_file(input_path: Path, output_path: Path) -> int:
+    """
+    转换域名规则文件
 
     Args:
         input_path: 输入文件路径
         output_path: 输出文件路径
+
+    Returns:
+        转换的规则数量
     """
     try:
         with open(input_path, 'r', encoding='utf-8') as f:
@@ -51,7 +96,7 @@ def convert_file(input_path: Path, output_path: Path) -> None:
 
         converted_lines = []
         for line in lines:
-            converted = convert_line(line)
+            converted = convert_domain_line(line)
             if converted:  # 只添加非空行
                 converted_lines.append(converted)
 
@@ -64,49 +109,134 @@ def convert_file(input_path: Path, output_path: Path) -> None:
             if converted_lines:  # 如果有内容，末尾添加换行符
                 f.write('\n')
 
-        print(f'✓ 已转换: {input_path.name} -> {output_path.name} ({len(converted_lines)} 条规则)')
+        return len(converted_lines)
 
     except Exception as e:
-        print(f'✗ 转换失败 {input_path.name}: {e}', file=sys.stderr)
+        print(f'✗ 转换域名规则失败 {input_path.name}: {e}', file=sys.stderr)
         raise
 
 
+def append_ip_rules(ip_file_path: Path, output_path: Path) -> int:
+    """
+    将 IP 规则追加到现有的域名规则文件末尾
+
+    Args:
+        ip_file_path: IP 规则文件路径
+        output_path: 要追加到的输出文件路径
+
+    Returns:
+        追加的 IP 规则数量
+    """
+    try:
+        with open(ip_file_path, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+
+        converted_lines = []
+        for line in lines:
+            converted = convert_ip_line(line)
+            if converted:  # 只添加非空行
+                converted_lines.append(converted)
+
+        if not converted_lines:
+            return 0
+
+        # 追加到现有文件
+        with open(output_path, 'a', encoding='utf-8') as f:
+            f.write('\n'.join(converted_lines))
+            f.write('\n')
+
+        return len(converted_lines)
+
+    except Exception as e:
+        print(f'✗ 追加 IP 规则失败 {ip_file_path.name}: {e}', file=sys.stderr)
+        return 0
+
+
 def main():
-    """主函数：批量转换所有 .list 文件"""
+    """主函数：批量转换所有域名和 IP 规则文件"""
     # 设置路径
-    source_dir = Path('meta-rules-dat/geo/geosite')
+    domain_source_dir = Path('meta-rules-dat/geo/geosite')
+    ip_source_dir = Path('meta-rules-dat/geo-lite/geoip')
     output_dir = Path('rules/geo/geosite')
 
-    if not source_dir.exists():
-        print(f'错误: 源目录不存在: {source_dir}', file=sys.stderr)
+    # 检查域名规则目录
+    if not domain_source_dir.exists():
+        print(f'错误: 域名规则源目录不存在: {domain_source_dir}', file=sys.stderr)
         sys.exit(1)
 
-    # 获取所有 .list 文件
-    list_files = sorted(source_dir.glob('*.list'))
+    # 获取所有域名 .list 文件
+    domain_files = sorted(domain_source_dir.glob('*.list'))
 
-    if not list_files:
-        print(f'警告: 在 {source_dir} 中未找到 .list 文件', file=sys.stderr)
+    if not domain_files:
+        print(f'警告: 在 {domain_source_dir} 中未找到 .list 文件', file=sys.stderr)
         sys.exit(0)
 
-    print(f'找到 {len(list_files)} 个 .list 文件')
+    print(f'找到 {len(domain_files)} 个域名规则文件')
     print('=' * 60)
 
-    # 转换所有文件
+    # 第一步：转换所有域名规则文件
     success_count = 0
-    for list_file in list_files:
-        # 输出文件名保持一致，但放在 rules 目录下
-        output_file = output_dir / list_file.name
+    domain_file_names = {}  # 记录已转换的文件名
+
+    for domain_file in domain_files:
+        output_file = output_dir / domain_file.name
+        domain_file_names[domain_file.stem] = output_file  # 记录文件名（不含扩展名）
 
         try:
-            convert_file(list_file, output_file)
+            rule_count = convert_domain_file(domain_file, output_file)
+            print(f'✓ 域名规则: {domain_file.name} ({rule_count} 条)')
             success_count += 1
         except Exception:
             continue
 
     print('=' * 60)
-    print(f'转换完成: {success_count}/{len(list_files)} 个文件成功')
+    print(f'域名规则转换完成: {success_count}/{len(domain_files)} 个文件')
 
-    if success_count < len(list_files):
+    # 第二步：处理 IP 规则
+    if not ip_source_dir.exists():
+        print(f'\n提示: IP 规则目录不存在: {ip_source_dir}')
+        print('跳过 IP 规则处理')
+        if success_count < len(domain_files):
+            sys.exit(1)
+        return
+
+    ip_files = sorted(ip_source_dir.glob('*.list'))
+
+    if not ip_files:
+        print(f'\n提示: 在 {ip_source_dir} 中未找到 IP 规则文件')
+        print('跳过 IP 规则处理')
+        if success_count < len(domain_files):
+            sys.exit(1)
+        return
+
+    print(f'\n找到 {len(ip_files)} 个 IP 规则文件')
+    print('=' * 60)
+
+    appended_count = 0
+    ip_rule_count = 0
+
+    for ip_file in ip_files:
+        file_stem = ip_file.stem  # 文件名（不含扩展名）
+
+        # 检查是否有同名的域名规则文件
+        if file_stem in domain_file_names:
+            output_file = domain_file_names[file_stem]
+            ip_count = append_ip_rules(ip_file, output_file)
+
+            if ip_count > 0:
+                print(f'✓ 追加 IP 规则: {ip_file.name} → {output_file.name} ({ip_count} 条)')
+                appended_count += 1
+                ip_rule_count += ip_count
+        else:
+            # 没有同名域名文件，跳过
+            pass
+
+    print('=' * 60)
+    print(f'IP 规则处理完成: {appended_count} 个文件追加，共 {ip_rule_count} 条 IP 规则')
+    print('=' * 60)
+    print(f'总计: {success_count} 个域名规则文件，{ip_rule_count} 条 IP 规则')
+
+    if success_count < len(domain_files):
         sys.exit(1)
 
 
