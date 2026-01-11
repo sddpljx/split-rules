@@ -1,0 +1,65 @@
+name: Convert Meta Rules to Surge Format
+
+on:
+  workflow_dispatch:  # 手动触发
+  schedule:
+    - cron: "0 0 * * *"  # 每天 UTC 0:00 运行（北京时间 8:00）
+  push:
+    branches:
+      - main
+    paths:
+      - 'convert_rules.py'
+      - '.github/workflows/convert-rules.yml'
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 当前仓库
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout MetaCubeX/meta-rules-dat
+        uses: actions/checkout@v4
+        with:
+          repository: MetaCubeX/meta-rules-dat
+          ref: meta
+          path: meta-rules-dat
+
+      - name: 设置 Python 环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 运行转换脚本
+        run: |
+          chmod +x convert_rules.py
+          python convert_rules.py
+
+      - name: 检查是否有变更
+        id: check_changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "发现规则文件有更新"
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "规则文件无变化"
+          fi
+
+      - name: 提交更改
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rules/
+          git commit -m "chore: 更新 Surge 规则 $(date +'%Y-%m-%d %H:%M')"
+
+      - name: 推送更改
+        if: steps.check_changes.outputs.has_changes == 'true'
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
