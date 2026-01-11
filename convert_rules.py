@@ -116,6 +116,46 @@ def convert_domain_file(input_path: Path, output_path: Path) -> int:
         raise
 
 
+def convert_ip_file(input_path: Path, output_path: Path) -> int:
+    """
+    转换 IP 规则文件
+
+    Args:
+        input_path: 输入文件路径
+        output_path: 输出文件路径
+
+    Returns:
+        转换的规则数量
+    """
+    try:
+        with open(input_path, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+
+        converted_lines = []
+        for line in lines:
+            converted = convert_ip_line(line)
+            if converted:  # 只添加非空行
+                converted_lines.append(converted)
+
+        if not converted_lines:
+            return 0
+
+        # 创建输出目录
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        # 写入转换后的内容
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(converted_lines))
+            if converted_lines:  # 如果有内容，末尾添加换行符
+                f.write('\n')
+
+        return len(converted_lines)
+
+    except Exception as e:
+        print(f'✗ 转换 IP 规则失败 {input_path.name}: {e}', file=sys.stderr)
+        raise
+
+
 def append_ip_rules(ip_file_path: Path, output_path: Path) -> int:
     """
     将 IP 规则追加到现有的域名规则文件末尾
@@ -157,7 +197,8 @@ def main():
     # 设置路径
     domain_source_dir = Path('meta-rules-dat/geo/geosite')
     ip_source_dir = Path('meta-rules-dat/geo-lite/geoip')
-    output_dir = Path('rules/geo/geosite')
+    domain_output_dir = Path('rules/geo/geosite')
+    ip_output_dir = Path('rules/geo/geoip')
 
     # 检查域名规则目录
     if not domain_source_dir.exists():
@@ -179,7 +220,7 @@ def main():
     domain_file_names = {}  # 记录已转换的文件名
 
     for domain_file in domain_files:
-        output_file = output_dir / domain_file.name
+        output_file = domain_output_dir / domain_file.name
         domain_file_names[domain_file.stem] = output_file  # 记录文件名（不含扩展名）
 
         try:
@@ -212,29 +253,42 @@ def main():
     print(f'\n找到 {len(ip_files)} 个 IP 规则文件')
     print('=' * 60)
 
-    appended_count = 0
-    ip_rule_count = 0
+    appended_count = 0  # 追加到域名规则文件的数量
+    standalone_count = 0  # 单独保存的数量
+    total_ip_rules = 0  # IP 规则总数
 
     for ip_file in ip_files:
         file_stem = ip_file.stem  # 文件名（不含扩展名）
 
         # 检查是否有同名的域名规则文件
         if file_stem in domain_file_names:
+            # 追加到同名域名规则文件
             output_file = domain_file_names[file_stem]
             ip_count = append_ip_rules(ip_file, output_file)
 
             if ip_count > 0:
-                print(f'✓ 追加 IP 规则: {ip_file.name} → {output_file.name} ({ip_count} 条)')
+                print(f'✓ 追加 IP 规则: {ip_file.name} → geosite/{output_file.name} ({ip_count} 条)')
                 appended_count += 1
-                ip_rule_count += ip_count
+                total_ip_rules += ip_count
         else:
-            # 没有同名域名文件，跳过
-            pass
+            # 单独保存到 geoip 目录
+            output_file = ip_output_dir / ip_file.name
+            try:
+                ip_count = convert_ip_file(ip_file, output_file)
+                if ip_count > 0:
+                    print(f'✓ IP 规则: {ip_file.name} → geoip/{ip_file.name} ({ip_count} 条)')
+                    standalone_count += 1
+                    total_ip_rules += ip_count
+            except Exception:
+                continue
 
     print('=' * 60)
-    print(f'IP 规则处理完成: {appended_count} 个文件追加，共 {ip_rule_count} 条 IP 规则')
+    print(f'IP 规则处理完成:')
+    print(f'  - 追加到域名规则: {appended_count} 个文件')
+    print(f'  - 独立 IP 规则: {standalone_count} 个文件')
+    print(f'  - IP 规则总数: {total_ip_rules} 条')
     print('=' * 60)
-    print(f'总计: {success_count} 个域名规则文件，{ip_rule_count} 条 IP 规则')
+    print(f'总计: {success_count} 个域名规则文件，{appended_count + standalone_count} 个 IP 规则文件')
 
     if success_count < len(domain_files):
         sys.exit(1)

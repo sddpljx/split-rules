@@ -14,6 +14,7 @@
   - `IP-CIDR` - IPv4 地址段匹配
   - `IP-CIDR6` - IPv6 地址段匹配
 - 🔗 智能合并：自动将同名 IP 规则追加到域名规则文件中
+- 📁 独立 IP 规则：无同名域名的 IP 规则单独保存在 `rules/geo/geoip/` 目录
 - 📦 提供 GitHub Raw 和 jsDelivr CDN 两种访问方式
 - 🚀 GitHub Actions 自动化构建
 
@@ -25,6 +26,30 @@
 |--------|-----------|------|
 | `apple.com` | `DOMAIN,apple.com` | 完整域名匹配 |
 | `+.apple.com` | `DOMAIN-SUFFIX,apple.com` | 域名后缀匹配 |
+| `1.1.1.0/24` | `IP-CIDR,1.1.1.0/24` | IPv4 地址段匹配 |
+| `2001:db8::/32` | `IP-CIDR6,2001:db8::/32` | IPv6 地址段匹配 |
+
+## 目录结构
+
+```
+rules/
+├── geo/
+│   ├── geosite/          # 域名规则（包含同名的 IP 规则）
+│   │   ├── apple.list    # Apple 域名 + IP 规则
+│   │   ├── google.list   # Google 域名 + IP 规则
+│   │   └── ...
+│   └── geoip/            # 独立的 IP 规则（无同名域名规则）
+│       ├── cn.list       # 中国大陆 IP 段
+│       ├── telegram.list # Telegram IP 段
+│       └── ...
+```
+
+### 规则处理逻辑
+
+1. **域名规则**：从 `meta-rules-dat/geo/geosite/` 转换，保存到 `rules/geo/geosite/`
+2. **IP 规则**：从 `meta-rules-dat/geo-lite/geoip/` 转换
+   - 如果存在同名域名规则文件（如 `apple.list`），IP 规则会追加到该文件末尾
+   - 如果不存在同名域名规则文件，IP 规则单独保存到 `rules/geo/geoip/` 目录
 
 ## 常用规则文件
 
@@ -98,7 +123,8 @@ RULE-SET,https://cdn.jsdelivr.net/gh/sddpljx/split-rules@main/rules/geo/geosite/
 
 ## 浏览所有规则
 
-查看 [rules/geo/geosite](./rules/geo/geosite) 目录获取所有可用的规则文件。
+- **域名规则（含同名 IP 规则）**：查看 [rules/geo/geosite](./rules/geo/geosite) 目录
+- **独立 IP 规则**：查看 [rules/geo/geoip](./rules/geo/geoip) 目录
 
 ## 更新频率
 
