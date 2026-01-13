@@ -142,7 +142,6 @@ DOMAIN,www.destinationurl.com
 DOMAIN,www.gstatic.com
 DOMAIN,www.pxcc.com
 DOMAIN,xn--flw351e.com
-DOMAIN-SUFFIX,ggpht.cn
 DOMAIN,pki-goog.l.google.com
 DOMAIN,c.pki.goog
 DOMAIN,i.pki.goog
@@ -152,3 +151,4 @@ DOMAIN,crls.pki.goog
 DOMAIN,ocsp.pki.goog
 DOMAIN,firebase-settings.crashlytics.com
 DOMAIN,redirector.c.play.google.com
+DOMAIN-SUFFIX,ggpht.cn
