@@ -478,7 +478,8 @@ IP-CIDR6,2a03:2887:ff33::/48,no-resolve
 IP-CIDR6,2a03:2887:ff37::/48,no-resolve
 IP-CIDR6,2a03:2887:ff38::/46,no-resolve
 IP-CIDR6,2a03:2887:ff3f::/48,no-resolve
-IP-CIDR6,2a03:2887:ff40::/46,no-resolve
+IP-CIDR6,2a03:2887:ff41::/48,no-resolve
+IP-CIDR6,2a03:2887:ff42::/47,no-resolve
 IP-CIDR6,2a03:2887:ff44::/47,no-resolve
 IP-CIDR6,2a03:2887:ff48::/46,no-resolve
 IP-CIDR6,2a03:2887:ff4d::/48,no-resolve
