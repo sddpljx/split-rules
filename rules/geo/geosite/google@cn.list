@@ -149,6 +149,6 @@ DOMAIN,o.pki.goog
 DOMAIN,crl.pki.goog
 DOMAIN,crls.pki.goog
 DOMAIN,ocsp.pki.goog
+DOMAIN,firebase-settings.crashlytics.com
 DOMAIN-SUFFIX,ggpht.cn
 DOMAIN,redirector.c.play.google.com
-DOMAIN,firebase-settings.crashlytics.com
