@@ -1879,6 +1879,7 @@ IP-CIDR,163.128.26.0/23,no-resolve
 IP-CIDR,163.128.72.0/23,no-resolve
 IP-CIDR,163.128.118.0/24,no-resolve
 IP-CIDR,163.128.154.0/23,no-resolve
+IP-CIDR,163.128.219.0/24,no-resolve
 IP-CIDR,163.130.0.0/15,no-resolve
 IP-CIDR,163.132.0.0/14,no-resolve
 IP-CIDR,163.136.0.0/14,no-resolve
@@ -3295,6 +3296,7 @@ IP-CIDR6,2001:df6:a000::/48,no-resolve
 IP-CIDR6,2001:df6:a680::/48,no-resolve
 IP-CIDR6,2001:df6:b800::/48,no-resolve
 IP-CIDR6,2001:df6:d7c0::/48,no-resolve
+IP-CIDR6,2001:df6:edc0::/48,no-resolve
 IP-CIDR6,2001:df7:4800::/43,no-resolve
 IP-CIDR6,2001:df7:5380::/47,no-resolve
 IP-CIDR6,2001:df7:5600::/48,no-resolve
