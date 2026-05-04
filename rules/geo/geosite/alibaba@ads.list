@@ -43,9 +43,6 @@ DOMAIN-SUFFIX,statis.api.3g.youku.com
 DOMAIN-SUFFIX,v6-adashx.ut.youku.com
 DOMAIN-SUFFIX,yk-ssp.ad.youku.com
 DOMAIN-SUFFIX,ykad-data.youku.com
-DOMAIN-SUFFIX,adashx.ut.ele.me
-DOMAIN-SUFFIX,h-adashx.ut.ele.me
-DOMAIN-SUFFIX,v6-adashx.ut.ele.me
 DOMAIN-SUFFIX,acjs.aliyun.com
 DOMAIN-SUFFIX,adash-emas.cn-hangzhou.aliyuncs.com
 DOMAIN-SUFFIX,adash.man.aliyuncs.com
@@ -61,6 +58,9 @@ DOMAIN-SUFFIX,logs.amap.com
 DOMAIN-SUFFIX,optimus-ads.amap.com
 DOMAIN-SUFFIX,v6-adashx.ut.amap.com
 DOMAIN-SUFFIX,v6-adashx.ut.cainiao.com
+DOMAIN-SUFFIX,adashx.ut.ele.me
+DOMAIN-SUFFIX,h-adashx.ut.ele.me
+DOMAIN-SUFFIX,v6-adashx.ut.ele.me
 DOMAIN-SUFFIX,ads.uc.cn
 DOMAIN-SUFFIX,adslot.uc.cn
 DOMAIN-SUFFIX,aaid.umeng.com
