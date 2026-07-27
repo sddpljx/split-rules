@@ -305,8 +305,8 @@ DOMAIN-SUFFIX,winhec.net
 DOMAIN-SUFFIX,yammer.com
 DOMAIN-SUFFIX,adaptivecards.io
 DOMAIN-SUFFIX,api-extractor.com
-DOMAIN-SUFFIX,githubcopilot.com
 DOMAIN-SUFFIX,npmjs.org
+DOMAIN-SUFFIX,npmjs.com
 DOMAIN-SUFFIX,apisof.net
 DOMAIN-SUFFIX,microsoft.ch
 DOMAIN-SUFFIX,blazor.net
@@ -359,8 +359,8 @@ DOMAIN-SUFFIX,vscode.dev
 DOMAIN-SUFFIX,vscodeedu.app
 DOMAIN-SUFFIX,vscodeedu.com
 DOMAIN-SUFFIX,xamarin.com
-DOMAIN-SUFFIX,npmjs.com
 DOMAIN-SUFFIX,npm.community
+DOMAIN-SUFFIX,githubcopilot.com
 DOMAIN-SUFFIX,thegithubshop.com
 DOMAIN-SUFFIX,msocsp.com
 DOMAIN-SUFFIX,microsoftnews.cc
