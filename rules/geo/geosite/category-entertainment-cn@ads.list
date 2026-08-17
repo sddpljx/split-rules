@@ -1,3 +1,4 @@
+DOMAIN-SUFFIX,log-upload.mihoyo.com
 DOMAIN,ads3-normal-hl.zijieapi.com
 DOMAIN,ads3-normal.zijieapi.com
 DOMAIN,ads5-normal-hl.zijieapi.com
@@ -17,7 +18,6 @@ DOMAIN-SUFFIX,apple.www.letv.com
 DOMAIN-SUFFIX,ark.letv.com
 DOMAIN-SUFFIX,dc.letv.com
 DOMAIN-SUFFIX,g3.letv.com
-DOMAIN,apilog-web.acfun.cn
 DOMAIN-SUFFIX,click.gamersky.com
 DOMAIN-SUFFIX,ja.gamersky.com
 DOMAIN-SUFFIX,ja1.gamersky.com
@@ -36,7 +36,6 @@ DOMAIN-SUFFIX,adserviceretry.kugou.com
 DOMAIN-SUFFIX,adbehavior.ximalaya.com
 DOMAIN-SUFFIX,adse.wsa.ximalaya.com
 DOMAIN-SUFFIX,adse.ximalaya.com
-DOMAIN-SUFFIX,log-upload.mihoyo.com
 DOMAIN-SUFFIX,click.hunantv.com
 DOMAIN-SUFFIX,da.hunantv.com
 DOMAIN-SUFFIX,da.mgtv.com
@@ -50,3 +49,4 @@ DOMAIN-SUFFIX,e.kuaishou.cn
 DOMAIN-SUFFIX,e.kuaishou.com
 DOMAIN,log-sdk.gifshow.com
 DOMAIN,wlog.kuaishou.com
+DOMAIN,apilog-web.acfun.cn
