@@ -27,6 +27,7 @@ DOMAIN,productionresultssa18.blob.core.windows.net
 DOMAIN,productionresultssa19.blob.core.windows.net
 DOMAIN,copilot-proxy.githubusercontent.com
 DOMAIN,copilot-workspace.githubnext.com
+DOMAIN,production-copilot-host-westus.webpubsub.azure.com
 DOMAIN,copilotprodattachments.blob.core.windows.net
 DOMAIN-SUFFIX,atom.io
 DOMAIN-SUFFIX,dependabot.com
@@ -55,10 +56,10 @@ DOMAIN-SUFFIX,octocaptcha.com
 DOMAIN-SUFFIX,opensource.guide
 DOMAIN-SUFFIX,repo.new
 DOMAIN-SUFFIX,thegithubshop.com
+DOMAIN-SUFFIX,githubcopilot.com
 DOMAIN-SUFFIX,npm.community
 DOMAIN-SUFFIX,npmjs.com
 DOMAIN-SUFFIX,npmjs.org
-DOMAIN-SUFFIX,githubcopilot.com
 DOMAIN-SUFFIX,cafe.github.com
 DOMAIN-SUFFIX,collector.github.com
 DOMAIN,copilot-telemetry-service.githubusercontent.com
