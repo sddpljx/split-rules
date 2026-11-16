@@ -79,6 +79,7 @@ DOMAIN,bnetcmsus-a.akamaihd.net
 DOMAIN,bnetproduct-a.akamaihd.net
 DOMAIN,bnetshopus.akamaized.net
 DOMAIN,brightcove.imgix.net
+DOMAIN,builds.dotnet.microsoft.com
 DOMAIN,bybit-exchange.github.io
 DOMAIN,bybit.ada.support
 DOMAIN,c.ppy.sh
@@ -181,6 +182,7 @@ DOMAIN,dlmobilegarena-a.akamaihd.net
 DOMAIN,dmqdd6hw24ucf.cloudfront.net
 DOMAIN,docker-images-prod.6aa30f8b08e16409b46e0173d6de2f56.r2.cloudflarestorage.com
 DOMAIN,docker-pinata-support.s3.amazonaws.com
+DOMAIN,dotnetcli.trafficmanager.net
 DOMAIN,doy2mn9upadnk.cloudfront.net
 DOMAIN,dqd0jw5gvbchn.cloudfront.net
 DOMAIN,dqrpb9wgowsf5.cloudfront.net
@@ -549,6 +551,7 @@ DOMAIN,steamusercontent-a.akamaihd.net
 DOMAIN,steamuserimages-a.akamaihd.net
 DOMAIN,steamvideo-a.akamaihd.net
 DOMAIN,straitsx-826709081262441084-b790f87a2ae6fd417434295.freshchat.com
+DOMAIN,sundry-star-net-geo.trafficmanager.net
 DOMAIN,supercell.helpshift.com
 DOMAIN,supercell.zendesk.com
 DOMAIN,t.ssp.hinet.net
@@ -841,7 +844,7 @@ DOMAIN-SUFFIX,apple
 DOMAIN-SUFFIX,android
 DOMAIN-SUFFIX,amazon
 DOMAIN-SUFFIX,jerkmate.com
-DOMAIN-SUFFIX,clipdrop.co
+DOMAIN-SUFFIX,certinomis.fr
 DOMAIN-SUFFIX,12diasderegalosdeitunes.hn
 DOMAIN-SUFFIX,12diasderegalosdeitunes.pe
 DOMAIN-SUFFIX,12joursdecadeauxdeitunes.com
@@ -1161,6 +1164,7 @@ DOMAIN-SUFFIX,51lieqi.com
 DOMAIN-SUFFIX,51luoben.com
 DOMAIN-SUFFIX,51luoli.info
 DOMAIN-SUFFIX,51mh.app
+DOMAIN-SUFFIX,51papaya.com
 DOMAIN-SUFFIX,51pincha.cc
 DOMAIN-SUFFIX,51tuqiang.com
 DOMAIN-SUFFIX,520aa.tv
@@ -3402,7 +3406,7 @@ DOMAIN-SUFFIX,autodraw.com
 DOMAIN-SUFFIX,autoesporte.com
 DOMAIN-SUFFIX,youtubecisco.com
 DOMAIN-SUFFIX,autofinancebank.ru
-DOMAIN-SUFFIX,jihadology.net
+DOMAIN-SUFFIX,autokreditbank.ru
 DOMAIN-SUFFIX,automaton-media.com
 DOMAIN-SUFFIX,automobile.fr
 DOMAIN-SUFFIX,automotive-cadcam.com
@@ -5100,7 +5104,7 @@ DOMAIN-SUFFIX,bmwstartupgarage.com
 DOMAIN-SUFFIX,bmwstep.com
 DOMAIN-SUFFIX,bmwstepconnections.com
 DOMAIN-SUFFIX,bmwsummerschool.com
-DOMAIN-SUFFIX,bmwtampabay.com
+DOMAIN-SUFFIX,jihadology.net
 DOMAIN-SUFFIX,bmwusa.com
 DOMAIN-SUFFIX,bmwusaservice.com
 DOMAIN-SUFFIX,bmwusatires.com
@@ -6008,7 +6012,7 @@ DOMAIN-SUFFIX,certificat2.com
 DOMAIN-SUFFIX,certificate-transparency.org
 DOMAIN-SUFFIX,yavtube.com
 DOMAIN-SUFFIX,certinomis.com
-DOMAIN-SUFFIX,certinomis.fr
+DOMAIN-SUFFIX,jifangge.com
 DOMAIN-SUFFIX,certsign.ro
 DOMAIN-SUFFIX,certum.pl
 DOMAIN-SUFFIX,ceskeporno.cz
@@ -6400,7 +6404,7 @@ DOMAIN-SUFFIX,clinicalkey.com
 DOMAIN-SUFFIX,clip16.com
 DOMAIN-SUFFIX,clipcake.com
 DOMAIN-SUFFIX,clipconverter.cc
-DOMAIN-SUFFIX,jifangge.com
+DOMAIN-SUFFIX,clipdrop.co
 DOMAIN-SUFFIX,cliphayho.com
 DOMAIN-SUFFIX,cliphunter.com
 DOMAIN-SUFFIX,clips4sale.com
@@ -7163,6 +7167,7 @@ DOMAIN-SUFFIX,dealtree.org
 DOMAIN-SUFFIX,deasians.com
 DOMAIN-SUFFIX,debank.com
 DOMAIN-SUFFIX,debian.org
+DOMAIN-SUFFIX,debot.ai
 DOMAIN-SUFFIX,debug.com
 DOMAIN-SUFFIX,debugproject.com
 DOMAIN-SUFFIX,decentr.net
@@ -11366,6 +11371,8 @@ DOMAIN-SUFFIX,gr-assets.com
 DOMAIN-SUFFIX,grabhentai.com
 DOMAIN-SUFFIX,grabpussy.com
 DOMAIN-SUFFIX,gradeuptube.com
+DOMAIN-SUFFIX,grafana.com
+DOMAIN-SUFFIX,grafana.net
 DOMAIN-SUFFIX,grafolio.com
 DOMAIN-SUFFIX,graias.com
 DOMAIN-SUFFIX,graiasmovies.com
@@ -14068,9 +14075,9 @@ DOMAIN-SUFFIX,jiaoyou8.com
 DOMAIN-SUFFIX,jiayoulu.com
 DOMAIN-SUFFIX,jibemobile.com
 DOMAIN-SUFFIX,xboxgamepass.com
-DOMAIN-SUFFIX,skyvegas.com
+DOMAIN-SUFFIX,wbdubna.ru
 DOMAIN-SUFFIX,12diasderegalosdeitunes.gt
-DOMAIN-SUFFIX,autokreditbank.ru
+DOMAIN-SUFFIX,bmwtampabay.com
 DOMAIN-SUFFIX,jiji.com
 DOMAIN-SUFFIX,jijiji.ca
 DOMAIN-SUFFIX,jilhub.com
@@ -20017,6 +20024,7 @@ DOMAIN-SUFFIX,quantil.com
 DOMAIN-SUFFIX,quatrowireless.com
 DOMAIN-SUFFIX,weights.com
 DOMAIN-SUFFIX,quay.io
+DOMAIN-SUFFIX,questionablequesting.com
 DOMAIN-SUFFIX,questvisual.com
 DOMAIN-SUFFIX,quicinc.com
 DOMAIN-SUFFIX,wefightcensorship.org
@@ -20374,6 +20382,7 @@ DOMAIN-SUFFIX,reiporno.com
 DOMAIN-SUFFIX,relateiq.com
 DOMAIN-SUFFIX,religionnews.com
 DOMAIN-SUFFIX,remirepo.net
+DOMAIN-SUFFIX,remna.dev
 DOMAIN-SUFFIX,remna.st
 DOMAIN-SUFFIX,rencapbank.ru
 DOMAIN-SUFFIX,renchead.com
@@ -21076,7 +21085,7 @@ DOMAIN-SUFFIX,selfloversworld.com
 DOMAIN-SUFFIX,selkombank.ru
 DOMAIN-SUFFIX,sellercommunity.com
 DOMAIN-SUFFIX,semanticscholar.org
-DOMAIN-SUFFIX,wbdubna.ru
+DOMAIN-SUFFIX,jieav.com
 DOMAIN-SUFFIX,sendvid.com
 DOMAIN-SUFFIX,seneporno.com
 DOMAIN-SUFFIX,seniortgp.com
@@ -21662,7 +21671,7 @@ DOMAIN-SUFFIX,skysports.fr
 DOMAIN-SUFFIX,skysports.ie
 DOMAIN-SUFFIX,skysportsonline.com
 DOMAIN-SUFFIX,skysportsracing.com
-DOMAIN-SUFFIX,jieav.com
+DOMAIN-SUFFIX,skyvegas.com
 DOMAIN-SUFFIX,skyxvpn.com
 DOMAIN-SUFFIX,sl99mod.buzz
 DOMAIN-SUFFIX,slack-core.com
@@ -21996,6 +22005,7 @@ DOMAIN-SUFFIX,soyinyj.top
 DOMAIN-SUFFIX,soyjak.party
 DOMAIN-SUFFIX,soyjak.st
 DOMAIN-SUFFIX,sp.cool
+DOMAIN-SUFFIX,spacebattles.com
 DOMAIN-SUFFIX,spaceexplored.com
 DOMAIN-SUFFIX,spaceforce.mil
 DOMAIN-SUFFIX,waltermartin.org
@@ -24162,6 +24172,7 @@ DOMAIN-SUFFIX,v.ps
 DOMAIN-SUFFIX,v.recipes
 DOMAIN-SUFFIX,v2.help
 DOMAIN-SUFFIX,volvotrucks.md
+DOMAIN-SUFFIX,v2ex.co
 DOMAIN-SUFFIX,v2ex.com
 DOMAIN-SUFFIX,v2fly.org
 DOMAIN-SUFFIX,v2ph.com
